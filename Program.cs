@@ -28,6 +28,13 @@ foreach (Book book in books)
     Console.WriteLine($"{book.DisplayName}");
 }
 
+Library bookLibrary = new Library("bookLibrary");
+bookLibrary.AddBook(harryPotter1);
+bookLibrary.AddBook(hankTheCowDog1);
+bookLibrary.AddBook(soldierX);
+
+bookLibrary.ListLibrary();
+
 public class Book
 {
 
@@ -52,3 +59,38 @@ public class Book
         }
     }
 }
+
+public class Library
+{
+    public string Name { get; set; }
+    public Library(string name)
+    {
+        Name = name;
+    }
+
+    private List<Book> _privateBookList = new List<Book>();
+
+    public void AddBook(Book book)
+    {
+        _privateBookList.Add(book);
+    }
+
+    public void ListLibrary()
+    {
+        Console.WriteLine("----------------------------");
+        Console.WriteLine("ListLibrary Results:");
+
+        foreach (Book book in _privateBookList)
+        {
+            Console.WriteLine($"{book.DisplayName}");
+        }
+    }
+}
+
+// 8-25 Instructions
+// Open the Book app that you made for yesterday's lightning exercise
+// Create a new class called Library (you can put it in Program.cs under the Book class). It should have a Name property
+// Add a private field which is  a List of Books. Give it a good name for a private field.
+// Create a method in the Library class called AddBook that takes a Book parameter, and adds the book to the book list
+// Create another method called ListLibrary that iterates through the library's books and prints their DisplayName  (see the bonus from yesterday)
+// create a library using the Library class, and add books to it using the AddBook and print the library to the console using the ListLibrary method
